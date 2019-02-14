@@ -1,0 +1,16 @@
+{
+  "name": "MiniBrowse",
+  "version": "0.0.1",
+  "description": "A mini browser made with Electron",
+  "main": "main.js",
+  "scripts": {
+    "electron": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^1.7.9",
+    "electron-tabs": "^0.9.5",
+    "x-chrome-tabs": "^1.0.5"
+  },
+}

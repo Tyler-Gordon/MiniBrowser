@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="node_modules/x-chrome-tabs/src/css/base.min.css" />
+    <script type="text/javascript" src="main.js"></script>
+  </head>
+
+  <body style='position: fixed'>
+    <form style='margin: 0;'>
+        <div class='row' style='-webkit-app-region: drag; background-color:#202C39;'>
+          <input  id="myurltext" class="col-md-6 col-sm-10 align-self-center" style='-webkit-app-region: no-drag; position: relative; margin-left: 20px; margin-right: 10px;' type="text" autofocus>
+          <button type="submit" style='visibility: hidden;' ></button>
+          <button tabindex="-1" onclick="window.close()" style='-webkit-app-region: no-drag; border-radius: 0px; background-color:#F29559;color:black;' class='btn float-right ml-auto mr-3'>X</button>
+        </div>
+    </form>
+
+  <div>
+    <webview class='col' id="mainwebview" nodeintegration="on"  src="https://www.youtube.com" style="display:inline-flex; width:100vw; height:100vh" allowpopups></webview>
+  </div>
+
+    <script>
+      onload = () => {
+        const mainwebview = document.getElementById('mainwebview')
+        
+        mainwebview.addEventListener('dom-ready', () => {
+          let curr = mainwebview.getURL();
+          document.getElementById('myurltext').value = "";
+        })
+
+        document.querySelector('form').addEventListener('submit', (event) =>{
+          event.preventDefault();
+
+          var new_url = document.getElementById('myurltext').value;
+
+          if(new_url.includes('https://') || new_url.includes('http://')){
+            mainwebview.loadURL(new_url);
+          }
+          else{
+            new_url = "https://" + new_url
+            mainwebview.loadURL(new_url);
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
